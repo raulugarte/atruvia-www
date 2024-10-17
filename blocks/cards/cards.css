@@ -1,0 +1,270 @@
+.cards > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 16px;
+}
+
+.cards > ul > li {
+  border: 1px solid var(--highlight-background-color);
+  background-color: var(--background-color)
+}
+
+.cards .cards-card-body {
+  margin: 16px;
+}
+
+.cards .cards-card-image {
+  line-height: 0;
+}
+
+.cards .cards-card-body > *:first-child {
+  margin-top: 0;
+}
+
+.cards > ul > li img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+
+
+
+/* FULL WIDTH */
+
+.fullwidth ul {
+  display: block;
+
+}
+
+.fullwidth > ul > li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border:none;
+
+}
+
+.fullwidth > ul > li:nth-child(even) {
+  background-color: #F3F2F6;
+}
+
+@media (min-width: 960px) {
+  .fullwidth > ul > li {
+    flex-direction: row;
+  }
+
+  .fullwidth > ul > li:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+ .reverse > ul > li {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: auto;
+  }
+}
+
+.fullwidth ul li picture img {
+  width: 100%;
+  aspect-ratio: 16/7;
+}
+
+.fullwidth .cards-card-image {
+  padding-top: 100px;
+  width: 100%;
+}
+
+
+@media (min-width: 960px) {
+  .fullwidth ul li picture img {
+    width: 620px;
+    aspect-ratio: 16/8;
+  }
+
+  .fullwidth .cards-card-image {
+    padding-top: 66px;
+    width: 620px;
+}
+
+}
+
+
+.fullwidth .cards-card-body {
+  width: 100%;
+  margin: 0;
+  margin-top: 50px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 960px) {
+  .fullwidth .cards-card-body {
+  width: 660px;
+  margin: 0;
+  margin-top: 50px;
+  box-sizing: border-box;
+  }
+}
+
+.fullwidth.reverse > ul > li:nth-child(odd) .cards-card-body{
+  padding: 0px;
+  width: 420px;
+}
+
+
+
+.fullwidth > ul > li:nth-child(odd) .cards-card-body{
+  padding: 0 40px;
+
+}
+
+
+
+@media (min-width: 960px) {
+
+  .fullwidth > ul > li:nth-child(odd) .cards-card-body{
+    padding-left: 150px;
+  }
+
+
+
+}
+
+
+.fullwidth .cards-card-body h3 {
+  font-size: 36px;
+}
+
+.fullwidth .cards-card-body ul li{
+  list-style: none;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  font-family: adobe-clean, sans-serif;
+}
+
+.fullwidth .cards-card-body ul li::before {
+    content: "•"; 
+    color: #0296A6;
+    font-size: 48px;
+    line-height: 24px;
+    display: inline-block; width: 1em;
+    margin-left: -1em}
+
+
+.cards-wrapper:has(.fullwidth) {
+  margin: unset;
+  max-width: 100%;
+}
+
+
+
+/* HOME */
+
+.home ul {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media (min-width: 960px) {
+  .home ul {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+  
+  }
+}
+
+
+  .home > ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home > ul > li:nth-child(1) {
+    width: 100%;
+    background-color: #171C29;
+    color: #fff;
+  }
+
+  .home > ul > li:nth-child(2) > .cards-card-image {
+    padding: 20px 40px;
+    width: 70%;
+    }
+
+  @media (min-width: 960px) {
+    .home > ul {
+      display: grid;
+    }
+
+    .div1 { grid-area: 1 / 1 / 3 / 2; }
+    .div2 { grid-area: 1 / 2 / 2 / 3; }
+    .div3 { grid-area: 2 / 2 / 3 / 3; }
+  
+  
+    .home > ul > li:nth-child(1) {
+      grid-area: 1 / 1 / 3 / 2; 
+      max-width: 400px;
+      background-color: #171C29;
+      color: #fff;
+    }
+
+    .home > ul > li:nth-child(2) {
+      grid-area: 1 / 2 / 2 / 3;
+      background-color: #CBE7F0;
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 0px;
+    }
+    
+    .home > ul > li:nth-child(3) {
+      grid-area: 2 / 2 / 3 / 3;
+      background-color: #CBE7F0;
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+.home > ul > li {
+  border: none;
+}
+
+.home .cards-card-image {
+  padding: 0px;
+}
+
+.home .cards-card-body {
+  margin-block-start: 40px;
+  margin-block-end: 0;
+  margin-left: 40px;
+  margin-right: 40px;
+  
+}
+
+
+.home .cards-card-image img {
+  object-fit: cover;
+  max-height: 280px;
+}
+
+.home > ul > li:nth-child(2) img {
+  object-fit: contain;
+  width: 100%;
+}
+
+
+  
+
+.home > ul > li:nth-child(3) img {
+  object-fit: cover;
+  width: 386px;
+  height: 280px;
+}

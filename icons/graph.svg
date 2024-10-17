@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47">
+  <g id="icon" transform="translate(-96 -91)">
+    <rect id="white_layer" data-name="white layer" width="47" height="47" rx="4" transform="translate(96 91)" fill="#fff"/>
+    <rect id="rec" width="47" height="47" rx="4" transform="translate(96 91)" fill="#0296a6" opacity="0.12"/>
+    <g id="Decorative_icon" data-name="Decorative icon" transform="translate(108.199 103.199)">
+      <g id="Placement_Area" data-name="Placement Area" transform="translate(-0.199 -0.199)" fill="red" stroke="rgba(0,0,0,0)" stroke-width="1" opacity="0">
+        <rect width="24" height="24" stroke="none"/>
+        <rect x="0.5" y="0.5" width="23" height="23" fill="none"/>
+      </g>
+      <g id="Icon-2" data-name="Icon" transform="translate(-0.199 -0.199)">
+        <rect id="Canvas" width="24" height="24" fill="#0296a6" opacity="0"/>
+        <rect id="Rectangle_163630" data-name="Rectangle 163630" width="4" height="5" rx="0.5" transform="translate(2 18)" fill="#0296a6"/>
+        <rect id="Rectangle_163631" data-name="Rectangle 163631" width="4" height="11" rx="0.5" transform="translate(7 12)" fill="#0296a6"/>
+        <rect id="Rectangle_163632" data-name="Rectangle 163632" width="5" height="16" rx="0.5" transform="translate(12 7)" fill="#0296a6"/>
+        <rect id="Rectangle_163633" data-name="Rectangle 163633" width="4" height="21" rx="0.5" transform="translate(18 2)" fill="#0296a6"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47">
+  <g id="icon" transform="translate(-0.055)">
+    <rect id="rec" width="47" height="47" rx="6" transform="translate(0.055)" fill="#0296a6" opacity="0.075"/>
+    <g id="money_icon" data-name="money icon" transform="translate(11.554 11.5)">
+      <g id="Placement_Area" data-name="Placement Area" fill="#2c2c2c" stroke="rgba(0,0,0,0)" stroke-width="1" opacity="0">
+        <rect width="24" height="24" stroke="none"/>
+        <rect x="0.5" y="0.5" width="23" height="23" fill="none"/>
+      </g>
+      <g id="Icon-2" data-name="Icon" transform="translate(0 4)">
+        <path id="Path_03" data-name="Path 03" d="M10976.669,2206a.666.666,0,0,1-.669-.667v-10.667a.666.666,0,0,1,.669-.667h.666v10.666H10996v.668a.669.669,0,0,1-.669.667Zm2.664-2.669a.664.664,0,0,1-.662-.668V2192a.665.665,0,0,1,.662-.668h.672v10.667h18.664v.667a.666.666,0,0,1-.669.668Zm2.667-2.664a.672.672,0,0,1-.665-.668v-9.337a.668.668,0,0,1,.665-.662h17.336a.664.664,0,0,1,.666.662V2200a.669.669,0,0,1-.666.668Zm.669-6.9v3.126a4,4,0,0,1,2.438,2.438h11.125a3.994,3.994,0,0,1,2.438-2.437v-3.126a4,4,0,0,1-2.437-2.438h-11.125A3.988,3.988,0,0,1,10982.669,2193.766Zm5.333,1.565a2.667,2.667,0,1,1,2.666,2.67A2.668,2.668,0,0,1,10988,2195.332Z" transform="translate(-10976 -2189.999)" fill="#0296a6"/>
+      </g>
+    </g>
+  </g>
+</svg>
