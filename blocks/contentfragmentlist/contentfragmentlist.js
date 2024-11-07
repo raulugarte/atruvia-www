@@ -1,7 +1,11 @@
 export default async function decorate(block) {
     const isUE = isUniversalEditorActive();
+
+    /* const aem = "https://author-p130407-e1279066.adobeaemcloud.com"; */
+    
     const persistedQuery = (isUE) ? useAuthorQuery(block.textContent) : block.textContent;
-    const categories = await getCategories(persistedQuery, isUE);
+    const categories = await getCategories(persistedQuery, isUE); 
+
     
     const root = document.createElement('div');
     root.setAttribute("class", "category-list");
@@ -15,15 +19,21 @@ export default async function decorate(block) {
         elem.innerHTML = `
             <div class="category-item-image">
                 <picture>
+
                     <source type="image/webp" srcset="${category.image.deliveryUrl}?preferwebp=true" media="(min-width: 600px)">
                     <source type="image/webp" srcset="${category.image.deliveryUrl}?preferwebp=true&width=750">
                     <source type="${category.image.mimeType}" srcset="${category.image.deliveryUrl}" media="(min-width: 600px)">
-                    <img src="${category.image.url}" width="${category.image.width}" height="${category.image.height}" alt="${category.title}" type="${category.image.mimeType}" itemprop="primaryImage" itemtype="image" loading="lazy">
+                    <img src="${category.image.url}" width="${category.image.width}" height="${category.image.height}" alt="${category.headline}" type="${category.image.mimeType}" itemprop="primaryImage" itemtype="image" loading="lazy">
+                
+                    
                 </picture>
             </div>
             <div class="category-item-content">
                 <h2 class="category-item-title" itemprop="title" itemtype="text">${category.title}</h2>
                 <p class="category-item-desc" itemprop="description" itemtype="richtext">${category.description}</p>
+                <div>
+                    <a href="#" title="${category.cta.text}" class="button primary">${category.cta.text}</a>
+                </div>
             </div>`;
         root.appendChild(elem);
     });
@@ -54,19 +64,19 @@ async function getCategories(persistedQuery, isUE) {
         credentials: "include"
     }).then((response) => response.json());
     /*const items = json?.data?.categoryList?.items || [] */
-    const items = json?.data?.adventureList?.items || []
+    const items = json?.data?.offerList?.items || []
 
     return items.map((item) => {
         /*const imageUrl = getImageUrl(item.image, isUE);*/
-        const imageUrl = getImageUrl(item.primaryImage, isUE);
+        const imageUrl = getImageUrl(item.heroImage, isUE);
         return {
             _path: item._path,
-            title: item.title,
+            title: item.headline,
             /*description: item.description["plaintext"],*/
-            description: item.slug["plaintext"],
+            description: item.detail["plaintext"],
             cta: { 
-                text: item.ctaText,
-                link: item.ctaLink,
+                text: item.callToAction
+                /*link: item.ctaLink,*/
             },
             image: {
                 url: imageUrl,
@@ -74,10 +84,10 @@ async function getCategories(persistedQuery, isUE) {
                 /*width: item.image["width"],*/
                 /*height: item.image["height"],*/
                 /*mimeType: item.image["mimeType"],*/
-                deliveryUrl: getImageUrl(item.primaryImage, false),
-                width: item.primaryImage["width"],
-                height: item.primaryImage["height"],
-                mimeType: item.primaryImage["mimeType"],
+                deliveryUrl: getImageUrl(item.heroImage, false),
+                width: item.heroImage["width"],
+                height: item.heroImage["height"],
+                mimeType: item.heroImage["mimeType"],
             },
         };
     });
