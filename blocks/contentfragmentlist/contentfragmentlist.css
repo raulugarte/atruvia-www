@@ -1,0 +1,22 @@
+.category-list:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.category-item {
+    margin: 75px 75px 75px 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.category-item-content {
+    padding: 75px 75px 75px 75px;
+}
+
+.category-item-desc {
+    color: #5a5760
+}
+
+.category-item > div {
+    flex: 1 1 50%;
+}
