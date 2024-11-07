@@ -57,10 +57,14 @@ async function getCategories(persistedQuery, isUE) {
     try {
         const response = await fetch(url);
         const json = await response.json();
-        const items = json?.data?.offerList?.items || [];
+
+        /*
+        const items = json?.data?.offerList?.items || []; */
+
+        const items = json?.data?.angebotSparenList?.items || [];
 
         return items.map((item) => {
-            const imageUrl = getImageUrl(item.heroImage, isUE);
+            const imageUrl = getImageUrl(item.bild, isUE);
             return {
                 _path: item._path,
                 title: item.headline,
