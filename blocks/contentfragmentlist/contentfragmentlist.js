@@ -55,9 +55,7 @@ async function getCategories(persistedQuery, isUE) {
     const url = addCacheKiller(persistedQuery);
 
     try {
-        const response = await fetch(url, {
-            credentials: "include"
-        });
+        const response = await fetch(url);
         const json = await response.json();
         const items = json?.data?.offerList?.items || [];
 
