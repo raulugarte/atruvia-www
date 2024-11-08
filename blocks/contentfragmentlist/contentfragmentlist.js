@@ -64,12 +64,12 @@ async function getCategories(persistedQuery, isUE) {
         const imageUrl = getImageUrl(item.primaryImage, isUE);
         return {
             _path: item._path,
-            title: item.title,
+            title: item.ueberschrift,
             /*description: item.description["plaintext"],*/
-            description: item.slug["plaintext"],
+            description: item.beschreibungAngebot["plaintext"],
             cta: { 
-                text: item.ctaText,
-                link: item.ctaLink,
+                text: item.untertitel
+                /*link: item.ctaLink */
             },
             image: {
                 url: imageUrl,
@@ -77,10 +77,10 @@ async function getCategories(persistedQuery, isUE) {
                 /*width: item.image["width"],*/
                 /*height: item.image["height"],*/
                 /*mimeType: item.image["mimeType"],*/
-                deliveryUrl: getImageUrl(item.primaryImage, false),
-                width: item.primaryImage["width"],
-                height: item.primaryImage["height"],
-                mimeType: item.primaryImage["mimeType"],
+                deliveryUrl: getImageUrl(item.bild, false),
+                width: item.bild["width"],
+                height: item.bild["height"],
+                mimeType: item.bild["mimeType"],
             },
         };
     });
