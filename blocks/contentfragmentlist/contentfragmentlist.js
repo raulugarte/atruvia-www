@@ -70,7 +70,7 @@ async function getCategories(persistedQuery, isUE) {
             throw new TypeError('Expected items to be an array');
         }
 
-        return items.map((item) => {
+        return items.map((items) => {
             const imageUrl = getImageUrl(item.bild, isUE);
             return {
                 _path: item._path,
