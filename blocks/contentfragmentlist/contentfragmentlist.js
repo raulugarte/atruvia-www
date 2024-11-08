@@ -1,12 +1,11 @@
 export default async function decorate(block) {
     const isUE = isUniversalEditorActive();
-
-    const persistedQuery = isUE ? useAuthorQuery(block.textContent) : block.textContent;
+    const persistedQuery = (isUE) ? useAuthorQuery(block.textContent) : block.textContent;
     const categories = await getCategories(persistedQuery, isUE);
-
+    
     const root = document.createElement('div');
     root.setAttribute("class", "category-list");
-
+    
     categories.forEach((category) => {
         const elem = document.createElement('div');
         elem.setAttribute("class", "category-item");
@@ -25,9 +24,6 @@ export default async function decorate(block) {
             <div class="category-item-content">
                 <h2 class="category-item-title" itemprop="title" itemtype="text">${category.title}</h2>
                 <p class="category-item-desc" itemprop="description" itemtype="richtext">${category.description}</p>
-                <div>
-                    <a href="#" title="${category.cta.text}" class="button primary">${category.cta.text}</a>
-                </div>
             </div>`;
         root.appendChild(elem);
     });
@@ -54,46 +50,38 @@ export default async function decorate(block) {
 async function getCategories(persistedQuery, isUE) {
     const url = addCacheKiller(persistedQuery);
 
-    try {
-        const response = await fetch(url);
-        const json = await response.json();
+    const json = await fetch(url, {
+        credentials: "include"
+    }).then((response) => response.json());
+    /*const items = json?.data?.categoryList?.items || [] */
+    const items = json?.data?.adventureList?.items || []
 
-        // Log the entire JSON response to inspect its structure
-        console.log('JSON response:', JSON.stringify(json, null, 2));
-
-        // Correct the path to items based on the actual JSON structure
-        const items = json?.data?.angebotSparenByPath?.item;
-
-        // Ensure items is an array before calling map
-        if (!Array.isArray(items)) {
-            console.error('Expected items to be an array, but got:', items);
-            //throw new TypeError('Expected items to be an array');
-        }
-
-        return items.map((item) => {
-            const imageUrl = getImageUrl(item.bild, isUE);
-            return {
-                _path: item._path,
-                title: item.headline,
-                description: item.detail?.plaintext || '',
-                cta: { 
-                    text: item.callToAction || ''
-                },
-                image: {
-                    url: imageUrl,
-                    deliveryUrl: getImageUrl(item.heroImage, false),
-                    width: item.heroImage?.width || 0,
-                    height: item.heroImage?.height || 0,
-                    mimeType: item.heroImage?.mimeType || ''
-                },
-            };
-        });
-    } catch (error) {
-        console.error('Error fetching categories:', error);
-        return [];
-    }
+    return items.map((item) => {
+        /*const imageUrl = getImageUrl(item.image, isUE);*/
+        const imageUrl = getImageUrl(item.primaryImage, isUE);
+        return {
+            _path: item._path,
+            title: item.title,
+            /*description: item.description["plaintext"],*/
+            description: item.slug["plaintext"],
+            cta: { 
+                text: item.ctaText,
+                link: item.ctaLink,
+            },
+            image: {
+                url: imageUrl,
+                /*deliveryUrl: getImageUrl(item.image, false),*/
+                /*width: item.image["width"],*/
+                /*height: item.image["height"],*/
+                /*mimeType: item.image["mimeType"],*/
+                deliveryUrl: getImageUrl(item.primaryImage, false),
+                width: item.primaryImage["width"],
+                height: item.primaryImage["height"],
+                mimeType: item.primaryImage["mimeType"],
+            },
+        };
+    });
 }
-
 /**
  * Detects whether the site is embedded in the universal editor by counting parent frames
  * @returns {boolean}
@@ -123,10 +111,12 @@ function addCacheKiller(url) {
     return newUrl.toString();
 }
 
+
 function getImageUrl(image, isUE) {
     if (isUE) { 
         return image["_authorUrl"];
     }
-    const url = new URL(image["_publishUrl"]);
-    return `https://${url.hostname}${image["_dynamicUrl"]}`;
+    const url = new URL(image["_publishUrl"])
+    return `https://${url.hostname}${image["_dynamicUrl"]}`
+    /*return `${image["_publishUrl"]}`*/
 }
