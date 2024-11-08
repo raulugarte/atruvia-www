@@ -57,7 +57,7 @@ async function getCategories(persistedQuery, isUE) {
 
     
     /*const items = json?.data?.categoryList?.items || [] */
-    const items = json?.data?.angebotSparenList?.items || []
+    const items = json?.data?.angebotSparenByPath?.items || []
 
     return items.map((item) => {
         /*const imageUrl = getImageUrl(item.image, isUE);*/
