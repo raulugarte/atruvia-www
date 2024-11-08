@@ -66,6 +66,7 @@ async function getCategories(persistedQuery, isUE) {
 
         // Ensure items is an array before calling map
         if (!Array.isArray(items)) {
+            console.error('Expected items to be an array, but got:', items);
             throw new TypeError('Expected items to be an array');
         }
 
