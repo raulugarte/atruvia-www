@@ -62,7 +62,7 @@ async function getCategories(persistedQuery, isUE) {
         console.log('JSON response:', JSON.stringify(json, null, 2));
 
         // Correct the path to items based on the actual JSON structure
-        const items = json?.data?.angebotSparenList?.items;
+        const items = json?.data?.angebotSparenList?.item;
 
         // Ensure items is an array before calling map
         if (!Array.isArray(items)) {
