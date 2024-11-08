@@ -58,26 +58,32 @@ async function getCategories(persistedQuery, isUE) {
         const response = await fetch(url);
         const json = await response.json();
 
-        /*
-        const items = json?.data?.offerList?.items || []; */
+        // Log the JSON response to inspect its structure
+        console.log('JSON response:', json);
 
-        const items = json?.data?.angebotSparenByPath?.item || [];
+        // Correct the path to items based on the actual JSON structure
+        const items = json?.data?.angebotSparenList?.items || [];
+
+        // Ensure items is an array before calling map
+        if (!Array.isArray(items)) {
+            throw new TypeError('Expected items to be an array');
+        }
 
         return items.map((item) => {
             const imageUrl = getImageUrl(item.bild, isUE);
             return {
                 _path: item._path,
                 title: item.headline,
-                description: item.detail["plaintext"],
+                description: item.detail?.plaintext || '',
                 cta: { 
-                    text: item.callToAction
+                    text: item.callToAction || ''
                 },
                 image: {
                     url: imageUrl,
                     deliveryUrl: getImageUrl(item.heroImage, false),
-                    width: item.heroImage["width"],
-                    height: item.heroImage["height"],
-                    mimeType: item.heroImage["mimeType"],
+                    width: item.heroImage?.width || 0,
+                    height: item.heroImage?.height || 0,
+                    mimeType: item.heroImage?.mimeType || ''
                 },
             };
         });
