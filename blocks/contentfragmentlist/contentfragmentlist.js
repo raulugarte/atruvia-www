@@ -58,8 +58,8 @@ async function getCategories(persistedQuery, isUE) {
         const response = await fetch(url);
         const json = await response.json();
 
-        // Log the JSON response to inspect its structure
-        console.log('JSON response:', json);
+        // Log the entire JSON response to inspect its structure
+        console.log('JSON response:', JSON.stringify(json, null, 2));
 
         // Correct the path to items based on the actual JSON structure
         const items = json?.data?.angebotSparenList?.items;
@@ -70,7 +70,7 @@ async function getCategories(persistedQuery, isUE) {
             throw new TypeError('Expected items to be an array');
         }
 
-        return items.map((items) => {
+        return items.map((item) => {
             const imageUrl = getImageUrl(item.bild, isUE);
             return {
                 _path: item._path,
