@@ -50,11 +50,14 @@ export default async function decorate(block) {
 async function getCategories(persistedQuery, isUE) {
     const url = addCacheKiller(persistedQuery);
 
-    const json = await fetch(url, {
-        credentials: "include"
-    }).then((response) => response.json());
+    /* const json = await fetch(url, {credentials: "include"}).then((response) => response.json()); */
+
+    const response = await fetch(url);
+    const json = await response.json();
+
+    
     /*const items = json?.data?.categoryList?.items || [] */
-    const items = json?.data?.adventureList?.items || []
+    const items = json?.data?.angebotSparenList?.items || []
 
     return items.map((item) => {
         /*const imageUrl = getImageUrl(item.image, isUE);*/
